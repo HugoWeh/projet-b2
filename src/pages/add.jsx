@@ -7,7 +7,7 @@ const App = () => {
       <Header />
       <div className="flex flex-col p-4 gap-4 items-center">
         <h1 className="text-4xl">Ajouter une adresse</h1>
-        <div className="flex flex-col gap-2 p-2 bg-yellow-400 w-1/3 rounded">
+        <div className="bg-yellow-400 w-1/3 rounded p-2">
           <h1>Nouvelle adresse</h1>
           <input type="text" />
         </div>
