@@ -3,8 +3,8 @@ import Link from "next/link";
 export const Header = () => {
   return (
     <header className="flex flex-row w-full justify-between bg-slate-300 p-4 gap-4 items-center">
-      <h1 className="text-2xl font-semibold">Onini</h1>
-      <ul className="flex flex-row gap-24 items-center">
+      <h1 className="text-4xl font-semibold">Onini</h1>
+      <ul className="flex flex-row gap-24">
         <li className="hover:bg-slate-100 hover:rounded-2xl font-bold">
           <Link href="/" className="hover:p-2 p-2">
             Accueil
