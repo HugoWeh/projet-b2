@@ -6,13 +6,19 @@ export const Header = () => {
       <h1 className="text-2xl font-semibold">Onini</h1>
       <ul className="flex flex-row gap-24">
         <li className="hover:bg-slate-100 hover:rounded-2xl font-bold">
-          <button className="hover:p-2 p-2">Accueil</button>
+          <Link href="/" className="hover:p-2 p-2">
+            Accueil
+          </Link>
         </li>
         <li className="hover:bg-slate-100 hover:rounded-2xl font-bold">
-          <button className="hover:p-2 p-2">Ajouter</button>
+          <Link href="/add" className="hover:p-2 p-2">
+            Ajouter
+          </Link>
         </li>
         <li className="hover:bg-slate-100 hover:rounded-2xl font-bold">
-          <button className="hover:p-2 p-2">Supprimer</button>
+          <Link href="/" className="hover:p-2 p-2">
+            Supprimer
+          </Link>
         </li>
       </ul>
       <input
