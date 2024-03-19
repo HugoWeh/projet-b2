@@ -1,3 +1,5 @@
+import clsx from "clsx";
+
 export const Address = () => {
   return (
     <div className="flex flex-row m-2 mr-0 items-center">
@@ -10,8 +12,10 @@ export const Address = () => {
           consectetur saepe mollitia.
         </p>
       </div>
-      <p className="bg-green-600 text-white p-4 rounded-r font-semibold">
-        Ouvert
+      <p className={clsx("text-white p-4 rounded-r font-semibold", {
+        
+      })}>
+        Fermé
       </p>
     </div>
   );
