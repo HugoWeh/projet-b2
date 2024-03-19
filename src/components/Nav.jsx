@@ -1,4 +1,4 @@
-const sites = ["Restaurants", "Hôtels", "Musée"];
+const sites = ["Restaurant", "Hôtel", "Musée", "Bar"];
 
 export const Nav = () => {
   return (
