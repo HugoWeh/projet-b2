@@ -1,8 +1,8 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { Nav } from "@/components/Nav";
-import { Stars } from "@/components/Stars";
-import { Address } from "@/components/Address";
+import { Header } from "@/components/Header"
+import { Footer } from "@/components/Footer"
+import { Nav } from "@/components/Nav"
+import { Stars } from "@/components/Stars"
+import { Address } from "@/components/Address"
 
 const HomePage = () => {
   return (
@@ -21,17 +21,17 @@ const HomePage = () => {
           </div>
         </div>
         <div>
-          <Address />
-          <Address />
-          <Address />
-          <Address />
-          <Address />
-          <Address />
+          <Address value="Ouvert" />
+          <Address value="Fermé" />
+          <Address value="Fermé" />
+          <Address value="Ouvert" />
+          <Address value="Fermé" />
+          <Address value="Ouvert" />
         </div>
       </div>
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

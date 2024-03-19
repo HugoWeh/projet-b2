@@ -1,6 +1,6 @@
-import clsx from "clsx";
+import clsx from "clsx"
 
-export const Address = () => {
+export const Address = ({ value }) => {
   return (
     <div className="flex flex-row m-2 mr-0 items-center">
       <div className="rounded basis-11/12 border-2 border-black p-2">
@@ -12,11 +12,14 @@ export const Address = () => {
           consectetur saepe mollitia.
         </p>
       </div>
-      <p className={clsx("text-white p-4 rounded-r font-semibold", {
-        
-      })}>
-        Fermé
+      <p
+        className={clsx("text-white p-4 rounded-r font-semibold", {
+          "bg-green-600": value === "Ouvert",
+          "bg-red-600": value === "Fermé"
+        })}
+      >
+        {value}
       </p>
     </div>
-  );
-};
+  )
+}

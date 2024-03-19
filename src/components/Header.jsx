@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next/link"
 
 export const Header = () => {
   return (
@@ -30,5 +30,5 @@ export const Header = () => {
         Se connecter
       </button>
     </header>
-  );
-};
+  )
+}

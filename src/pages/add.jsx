@@ -1,6 +1,8 @@
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 
+export const getServerSideProps = async () => {};
+
 const App = () => {
   return (
     <div className="flex flex-col bg-purple-600 h-screen">
