@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export const Footer = () => (
   <footer className="flex flex-row p-4 gap-4 bg-slate-300 w-full items-center">
-    <Link href="/index" className="text-2xl font-semibold">
+    <Link href="/" className="text-2xl font-semibold">
       Home
     </Link>
     <p>
