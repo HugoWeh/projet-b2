@@ -14,11 +14,6 @@ export const Header = () => (
           Ajouter
         </Link>
       </li>
-      <li className="hover:bg-slate-100 hover:rounded-2xl font-bold">
-        <Link href="/" className="hover:p-2 p-2">
-          Supprimer
-        </Link>
-      </li>
     </ul>
     <input type="search" placeholder="Rechercher..." className="p-1 rounded" />
     <button className="p-2 text-white hover:bg-red-400 bg-red-600 active:bg-white active:text-red-600">
