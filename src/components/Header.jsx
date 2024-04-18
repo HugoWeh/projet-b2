@@ -16,7 +16,7 @@ export const Header = () => (
       </li>
     </ul>
     <input type="search" placeholder="Rechercher..." className="p-1 rounded" />
-    <button className="p-2 text-white hover:bg-red-400 bg-red-600 active:bg-white active:text-red-600">
+    <button className="p-2 text-white hover:bg-red-400 bg-red-600 active:bg-white active:text-red-600 font-semibold">
       Se connecter
     </button>
   </header>
