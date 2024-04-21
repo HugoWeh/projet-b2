@@ -5,6 +5,8 @@ import * as yup from "yup"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
 import { Button } from "@/components/Button"
+import { Header } from "@/components/Header"
+import { Footer } from "@/components/Footer"
 
 export const getServerSideProps = async ({ params: { addressId } }) => {
   const { data: address } = await axios(
@@ -51,21 +53,27 @@ const AddressEditPage = ({ address }) => {
   }
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={handleSubmit}
-    >
-      <Form>
-        <FormField name="locationType" placeholder="Type de lieu" />
-        <FormField name="name" placeholder="Nom du lieu" />
-        <FormField name="locationAddress" placeholder="Adresse du lieu" />
-        <FormField name="city" placeholder="Ville" />
-        <FormField name="postalCode" placeholder="Code postal" />
-        <FormField name="country" placeholder="Pays" />
-        <Button type="submit">Sauvegarder les modifications</Button>
-      </Form>
-    </Formik>
+    <div>
+      <Header />
+      <div className="p-2">
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <FormField name="locationType" placeholder="Type de lieu" />
+            <FormField name="name" placeholder="Nom du lieu" />
+            <FormField name="locationAddress" placeholder="Adresse du lieu" />
+            <FormField name="city" placeholder="Ville" />
+            <FormField name="postalCode" placeholder="Code postal" />
+            <FormField name="country" placeholder="Pays" />
+            <Button type="submit">Sauvegarder les modifications</Button>
+          </Form>
+        </Formik>
+      </div>
+      <Footer />
+    </div>
   )
 }
 

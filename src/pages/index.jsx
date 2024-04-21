@@ -2,7 +2,6 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { Nav } from "@/components/Nav"
 import { Stars } from "@/components/Stars"
-import { Address } from "@/components/Address"
 
 const HomePage = () => (
   <>
@@ -18,9 +17,6 @@ const HomePage = () => (
             <Stars />
           </ul>
         </div>
-      </div>
-      <div>
-        <Address />
       </div>
     </div>
     <Footer />
