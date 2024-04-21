@@ -20,12 +20,7 @@ const HomePage = () => (
         </div>
       </div>
       <div>
-        <Address value="Ouvert" />
-        <Address value="Fermé" />
-        <Address value="Fermé" />
-        <Address value="Ouvert" />
-        <Address value="Fermé" />
-        <Address value="Ouvert" />
+        <Address />
       </div>
     </div>
     <Footer />

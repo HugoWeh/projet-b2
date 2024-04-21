@@ -3,8 +3,10 @@ import { AddressModel } from "@/database/models/AddressModel"
 
 const handler = createRoute(async (req, res) => {
   if (req.method === "GET") {
-    const { type } = req.query
-    const addresses = await AddressModel.find(type ? { type } : {})
+    const { locationType } = req.query
+    const addresses = await AddressModel.find(
+      locationType ? { locationType } : {},
+    )
 
     res.send(addresses)
 
