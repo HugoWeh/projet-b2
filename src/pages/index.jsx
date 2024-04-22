@@ -2,8 +2,17 @@ import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { Nav } from "@/components/Nav"
 import { Stars } from "@/components/Stars"
+import axios from "axios"
+import Link from "next/link"
 
-const HomePage = () => (
+export const getServerSideProps = async () => {
+  const { data: addresses } = await axios("http://localhost:3000/api/addresses")
+
+  return {
+    props: { addresses },
+  }
+}
+const HomePage = ({ addresses }) => (
   <>
     <Header />
     <div className="flex flex-row">
@@ -17,6 +26,25 @@ const HomePage = () => (
             <Stars />
           </ul>
         </div>
+      </div>
+      <div>
+        {addresses.map((address, index) => (
+          <div key={index} className="m-2 p-2 border-2 w-">
+            <h1 className="text-2xl font-semibold">
+              {address.locationType} : {address.name}
+            </h1>
+            <p>{address.locationAddress}</p>
+            <p>{address.city}</p>
+            <p>{address.postalCode}</p>
+            <p>{address.country}</p>
+            <Link
+              href={`/addresses/${address._id}`}
+              className="p-2 bg-indigo-600 text-white font-semibold rounded"
+            >
+              Afficher les détails
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
     <Footer />
