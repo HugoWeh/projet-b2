@@ -33,13 +33,13 @@ const HomePage = ({ addresses }) => (
             <h1 className="text-2xl font-semibold">
               {address.locationType} : {address.name}
             </h1>
-            <p>{address.locationAddress}</p>
-            <p>{address.city}</p>
-            <p>{address.postalCode}</p>
-            <p>{address.country}</p>
+            <p>Adresse : {address.locationAddress}</p>
+            <p>Ville : {address.city}</p>
+            <p>Code postal : {address.postalCode}</p>
+            <p>Pays : {address.country}</p>
             <Link
               href={`/addresses/${address._id}`}
-              className="p-2 bg-indigo-600 text-white font-semibold rounded"
+              className="flex p-2 bg-indigo-600 text-white font-semibold rounded"
             >
               Afficher les détails
             </Link>
