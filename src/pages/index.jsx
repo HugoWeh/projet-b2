@@ -39,7 +39,7 @@ const HomePage = ({ addresses }) => (
             <p>Pays : {address.country}</p>
             <Link
               href={`/addresses/${address._id}`}
-              className="flex p-2 bg-indigo-600 text-white font-semibold rounded"
+              className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
             >
               Afficher les détails
             </Link>

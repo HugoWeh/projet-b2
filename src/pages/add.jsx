@@ -7,6 +7,7 @@ import { useState } from "react"
 import * as yup from "yup"
 import axios from "axios"
 import { Button } from "@/components/Button"
+import { SelectField } from "@/components/SelectField"
 
 export const getServerSideProps = async () => {
   const { data: addresses } = await axios("http://localhost:3000/api/addresses")
@@ -26,10 +27,7 @@ const initialValues = {
   country: "",
 }
 const validationSchema = yup.object({
-  locationType: yup
-    .string()
-    .oneOf(["Restaurant", "Musée", "Bar", "Parc"])
-    .required("Champ requis"),
+  locationType: yup.string().required("Champ requis"),
   name: yup.string().min(1).required("Champ requis"),
   locationAddress: yup.string().min(3).required("Champ requis"),
   city: yup.string().min(1).required("Champ requis"),
@@ -40,6 +38,10 @@ const validationSchema = yup.object({
 const AddressesPage = (props) => {
   const { addresses: initialAddresses } = props
   const [addresses, setAddresses] = useState(initialAddresses)
+  const [locationTypeSelect, setLocationTypeSelect] = useState()
+  const handleSelect = (e) => {
+    setLocationTypeSelect(e.target.value)
+  }
   const submit = async (
     { locationType, name, locationAddress, city, postalCode, country },
     { resetForm },
@@ -80,7 +82,11 @@ const AddressesPage = (props) => {
           onSubmit={submit}
         >
           <Form>
-            <FormField name="locationType" placeholder="Type de lieu" />
+            <SelectField
+              name="locationType"
+              value={locationTypeSelect}
+              onChange={handleSelect}
+            />
             <FormField name="name" placeholder="Nom du lieu" />
             <FormField name="locationAddress" placeholder="Adresse du lieu" />
             <FormField name="city" placeholder="Ville" />
