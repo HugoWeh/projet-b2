@@ -1,6 +1,7 @@
 import { createRoute } from "@/api/createRoute"
 import { AddressModel } from "@/database/models/AddressModel"
 
+// eslint-disable-next-line max-lines-per-function
 const handler = createRoute(async (req, res) => {
   if (req.method === "GET") {
     const { locationType } = req.query
@@ -14,8 +15,16 @@ const handler = createRoute(async (req, res) => {
   }
 
   if (req.method === "POST") {
-    const { locationType, name, locationAddress, city, postalCode, country } =
-      req.body
+    const {
+      locationType,
+      name,
+      locationAddress,
+      city,
+      postalCode,
+      country,
+      barType,
+      averagePriceBar,
+    } = req.body
     const newAddress = new AddressModel({
       locationType,
       name,
@@ -23,6 +32,8 @@ const handler = createRoute(async (req, res) => {
       city,
       postalCode,
       country,
+      barType,
+      averagePriceBar,
     })
 
     await newAddress.save()

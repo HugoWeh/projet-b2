@@ -1,6 +1,7 @@
 import { createRoute } from "@/api/createRoute"
 import { AddressModel } from "@/database/models/AddressModel"
 
+// eslint-disable-next-line max-lines-per-function
 const handler = createRoute(async (req, res) => {
   const { addressId } = req.query
   const address = await AddressModel.findById(addressId)
@@ -16,15 +17,8 @@ const handler = createRoute(async (req, res) => {
   }
 
   if (req.method === "PATCH") {
-    const {
-      locationType,
-      name,
-      locationAddress,
-      city,
-      postalCode,
-      country,
-      isOpen,
-    } = req.body
+    const { locationType, name, locationAddress, city, postalCode, country } =
+      req.body
 
     Object.assign(address, {
       locationType: locationType || address.locationType,
@@ -33,7 +27,6 @@ const handler = createRoute(async (req, res) => {
       city: city || address.city,
       postalCode: postalCode || address.postalCode,
       country: country || address.country,
-      isOpen: isOpen ?? address.isOpen,
     })
 
     await address.save()

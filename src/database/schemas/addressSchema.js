@@ -25,5 +25,6 @@ export const addressSchema = new Schema({
     type: String,
     required: true,
   },
-  isOpen: Boolean,
+  barType: String,
+  averagePriceBar: Number,
 })

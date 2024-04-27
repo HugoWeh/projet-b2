@@ -18,10 +18,7 @@ export const getServerSideProps = async ({ params: { addressId } }) => {
   }
 }
 const validationSchema = yup.object({
-  locationType: yup
-    .string()
-    .oneOf(["Restaurant", "Musée", "Bar", "Parc"])
-    .required(),
+  locationType: yup.string().required(),
   name: yup.string().min(1).required(),
   locationAddress: yup.string().min(3).required(),
   city: yup.string().min(1).required(),

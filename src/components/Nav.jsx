@@ -1,4 +1,4 @@
-const sites = ["Restaurant", "Hôtel", "Musée", "Bar"]
+const sites = ["Restaurant", "Musée", "Bar", "Parc"]
 
 export const Nav = () => (
   <>

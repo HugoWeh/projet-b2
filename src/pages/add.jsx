@@ -4,7 +4,7 @@ import { Formik } from "formik"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
 import { useState } from "react"
-import * as yup from "yup"
+import { validationSchema } from "@/database/schemas/validationSchema"
 import axios from "axios"
 import { Button } from "@/components/Button"
 import { SelectField } from "@/components/SelectField"
@@ -25,25 +25,25 @@ const initialValues = {
   city: "",
   postalCode: "",
   country: "",
+  kitchenType: "",
+  barType: "",
+  averagePriceBar: "",
 }
-const validationSchema = yup.object({
-  locationType: yup.string().required("Champ requis"),
-  name: yup.string().min(1).required("Champ requis"),
-  locationAddress: yup.string().min(3).required("Champ requis"),
-  city: yup.string().min(1).required("Champ requis"),
-  postalCode: yup.number().integer().required("Champ requis"),
-  country: yup.string().min(4).required("Champ requis"),
-})
 // eslint-disable-next-line max-lines-per-function
 const AddressesPage = (props) => {
   const { addresses: initialAddresses } = props
   const [addresses, setAddresses] = useState(initialAddresses)
-  const [locationTypeSelect, setLocationTypeSelect] = useState()
-  const handleSelect = (e) => {
-    setLocationTypeSelect(e.target.value)
-  }
   const submit = async (
-    { locationType, name, locationAddress, city, postalCode, country },
+    {
+      locationType,
+      name,
+      locationAddress,
+      city,
+      postalCode,
+      country,
+      barType,
+      averagePriceBar,
+    },
     { resetForm },
   ) => {
     const { data: newAddress } = await axios.post("/api/addresses", {
@@ -53,23 +53,11 @@ const AddressesPage = (props) => {
       city,
       postalCode,
       country,
+      barType,
+      averagePriceBar,
     })
     setAddresses([newAddress, ...addresses])
     resetForm()
-  }
-  const toggleAddress = (address) => async () => {
-    const { data: uptadedAddress } = await axios.patch(
-      `/api/addresses/${address._id}`,
-      { isOpen: !address.isOpen },
-    )
-
-    setAddresses((currentAddresses) => {
-      const uptadedAddressIndex = currentAddresses.findIndex(
-        ({ _id }) => _id === address._id,
-      )
-
-      return currentAddresses.with(uptadedAddressIndex, uptadedAddress)
-    })
   }
 
   return (
@@ -82,16 +70,14 @@ const AddressesPage = (props) => {
           onSubmit={submit}
         >
           <Form>
-            <SelectField
-              name="locationType"
-              value={locationTypeSelect}
-              onChange={handleSelect}
-            />
+            <SelectField name="locationType" />
             <FormField name="name" placeholder="Nom du lieu" />
             <FormField name="locationAddress" placeholder="Adresse du lieu" />
             <FormField name="city" placeholder="Ville" />
             <FormField name="postalCode" placeholder="Code postal" />
             <FormField name="country" placeholder="Pays" />
+            <FormField name="barType" placeholder="Type de bar" />
+            <FormField name="averagePriceBar" placeholder="Prix moyen" />
             <Button type="submit">Ajouter le lieu</Button>
           </Form>
         </Formik>
