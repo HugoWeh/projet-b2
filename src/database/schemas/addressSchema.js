@@ -3,6 +3,7 @@ import { Schema } from "mongoose"
 export const addressSchema = new Schema({
   locationType: {
     type: String,
+    default: "Restaurant",
     required: true,
   },
   name: {
@@ -25,6 +26,17 @@ export const addressSchema = new Schema({
     type: String,
     required: true,
   },
+  kitchenType: String,
+  starsNumber: Number,
+  averagePriceRestaurant: Number,
+  artisticMovement: String,
+  artType: String,
+  freeOrPaidMuseum: String,
+  priceMuseum: Number,
   barType: String,
   averagePriceBar: Number,
+  parkType: String,
+  publicOrPrivate: String,
+  freeOrPaidPark: String,
+  pricePark: Number,
 })

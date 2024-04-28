@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
 import { Formik } from "formik"
@@ -26,13 +27,27 @@ const initialValues = {
   postalCode: "",
   country: "",
   kitchenType: "",
+  starsNumber: "",
+  averagePriceRestaurant: "",
+  artisticMovement: "",
+  artType: "",
+  freeOrPaidMuseum: "",
+  priceMuseum: "",
   barType: "",
   averagePriceBar: "",
+  parkType: "",
+  publicOrPrivate: "",
+  freeOrPaidPark: "",
+  pricePark: "",
 }
 // eslint-disable-next-line max-lines-per-function
 const AddressesPage = (props) => {
   const { addresses: initialAddresses } = props
   const [addresses, setAddresses] = useState(initialAddresses)
+  const [locationSelect, setLocationSelect] = useState("Restaurant")
+  const handleSelect = (e) => {
+    setLocationSelect(e.target.value)
+  }
   const submit = async (
     {
       locationType,
@@ -41,8 +56,19 @@ const AddressesPage = (props) => {
       city,
       postalCode,
       country,
+      kitchenType,
+      starsNumber,
+      averagePriceRestaurant,
+      artisticMovement,
+      artType,
+      freeOrPaidMuseum,
+      priceMuseum,
       barType,
       averagePriceBar,
+      parkType,
+      publicOrPrivate,
+      freeOrPaidPark,
+      pricePark,
     },
     { resetForm },
   ) => {
@@ -53,8 +79,19 @@ const AddressesPage = (props) => {
       city,
       postalCode,
       country,
+      kitchenType,
+      starsNumber,
+      averagePriceRestaurant,
+      artisticMovement,
+      artType,
+      freeOrPaidMuseum,
+      priceMuseum,
       barType,
       averagePriceBar,
+      parkType,
+      publicOrPrivate,
+      freeOrPaidPark,
+      pricePark,
     })
     setAddresses([newAddress, ...addresses])
     resetForm()
@@ -70,14 +107,68 @@ const AddressesPage = (props) => {
           onSubmit={submit}
         >
           <Form>
-            <SelectField name="locationType" />
+            <SelectField
+              name="locationType"
+              value={locationSelect}
+              onChange={handleSelect}
+            />
             <FormField name="name" placeholder="Nom du lieu" />
             <FormField name="locationAddress" placeholder="Adresse du lieu" />
             <FormField name="city" placeholder="Ville" />
             <FormField name="postalCode" placeholder="Code postal" />
             <FormField name="country" placeholder="Pays" />
-            <FormField name="barType" placeholder="Type de bar" />
-            <FormField name="averagePriceBar" placeholder="Prix moyen" />
+            {locationSelect === "Restaurant" ? (
+              <>
+                <FormField name="kitchenType" placeholder="Type de cuisine" />
+                <FormField name="starsNumber" placeholder="Nombre d'étoiles" />
+                <FormField
+                  name="averagePriceRestaurant"
+                  placeholder="Prix moyen"
+                />
+              </>
+            ) : (
+              ""
+            )}
+            {locationSelect === "Musée" ? (
+              <>
+                <FormField
+                  name="artisticMovement"
+                  placeholder="Courant artistique"
+                />
+                <FormField name="artType" placeholder="Type d'art" />
+                <FormField
+                  name="freeOrPaidMuseum"
+                  placeholder="Gratuit ou payant"
+                />
+                <FormField name="priceMuseum" placeholder="Prix" />
+              </>
+            ) : (
+              ""
+            )}
+            {locationSelect === "Bar" ? (
+              <>
+                <FormField name="barType" placeholder="Type de bar" />
+                <FormField name="averagePriceBar" placeholder="Prix moyen" />
+              </>
+            ) : (
+              ""
+            )}
+            {locationSelect === "Parc" ? (
+              <>
+                <FormField name="parkType" placeholder="Type de parc" />
+                <FormField
+                  name="publicOrPrivate"
+                  placeholder="Public ou privé"
+                />
+                <FormField
+                  name="freeOrPaidPark"
+                  placeholder="Gratuit ou payant"
+                />
+                <FormField name="pricePark" placeholder="Prix" />
+              </>
+            ) : (
+              ""
+            )}
             <Button type="submit">Ajouter le lieu</Button>
           </Form>
         </Formik>
