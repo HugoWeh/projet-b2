@@ -30,6 +30,15 @@ const AddressPage = ({ address }) => (
     >
       Modfier
     </Link>
+    <Link
+      href="/"
+      className="p-2 rounded bg-indigo-600 font-semibold text-white"
+      onClick={async () => {
+        await axios.delete(`/api/addresses/${address._id}`)
+      }}
+    >
+      Supprimer
+    </Link>
     <Footer />
   </div>
 )

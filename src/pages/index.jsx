@@ -1,9 +1,11 @@
+/* eslint-disable max-lines */
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { Nav } from "@/components/Nav"
 import { Stars } from "@/components/Stars"
 import axios from "axios"
 import Link from "next/link"
+import { useState } from "react"
 
 export const getServerSideProps = async () => {
   const { data: addresses } = await axios("http://localhost:3000/api/addresses")
@@ -12,43 +14,152 @@ export const getServerSideProps = async () => {
     props: { addresses },
   }
 }
-const HomePage = ({ addresses }) => (
-  <>
-    <Header />
-    <div className="flex flex-row">
-      <div className="border-r border-black w-1/6">
-        <ul className="bg-gray-200">
-          <Nav />
-        </ul>
-        <div className="justify-around border-t-2 border-black p-2">
-          <h1 className="text-2xl text-center">Avis</h1>
-          <ul className="flex flex-row justify-around">
-            <Stars />
+// eslint-disable-next-line max-lines-per-function
+const HomePage = ({ addresses }) => {
+  const [filter, setFilter] = useState("")
+  const handleChange = (e) => {
+    setFilter(e.target.value)
+  }
+
+  return (
+    <>
+      <Header />
+      <div className="flex flex-row">
+        <div className="border-r border-black w-1/6">
+          <ul className="bg-gray-200">
+            <Nav />
+            <select name="filter" onChange={handleChange}>
+              <option value="" />
+              <option value="Restaurant">Restaurant</option>
+              <option value="Musée">Musée</option>
+              <option value="Bar">Bar</option>
+              <option value="Parc">Parc</option>
+            </select>
           </ul>
+          <div className="justify-around border-t-2 border-black p-2">
+            <h1 className="text-2xl text-center">Avis</h1>
+            <ul className="flex flex-row justify-around">
+              <Stars />
+            </ul>
+          </div>
+        </div>
+        <div>
+          {filter === ""
+            ? addresses.map((address, index) => (
+                <div key={index} className="m-2 p-2 border-2 w-">
+                  <h1 className="text-2xl font-semibold">
+                    {address.locationType} : {address.name}
+                  </h1>
+                  <p>Adresse : {address.locationAddress}</p>
+                  <p>Ville : {address.city}</p>
+                  <p>Code postal : {address.postalCode}</p>
+                  <p>Pays : {address.country}</p>
+                  <Link
+                    href={`/addresses/${address._id}`}
+                    className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
+                  >
+                    Afficher les détails
+                  </Link>
+                </div>
+              ))
+            : ""}
+          {filter === "Restaurant"
+            ? addresses.map((address, index) =>
+                address.locationType === "Restaurant" ? (
+                  <div key={index} className="m-2 p-2 border-2 w-">
+                    <h1 className="text-2xl font-semibold">
+                      {address.locationType} : {address.name}
+                    </h1>
+                    <p>Adresse : {address.locationAddress}</p>
+                    <p>Ville : {address.city}</p>
+                    <p>Code postal : {address.postalCode}</p>
+                    <p>Pays : {address.country}</p>
+                    <Link
+                      href={`/addresses/${address._id}`}
+                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
+                    >
+                      Afficher les détails
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                ),
+              )
+            : ""}
+          {filter === "Musée"
+            ? addresses.map((address, index) =>
+                address.locationType === "Musée" ? (
+                  <div key={index} className="m-2 p-2 border-2 w-">
+                    <h1 className="text-2xl font-semibold">
+                      {address.locationType} : {address.name}
+                    </h1>
+                    <p>Adresse : {address.locationAddress}</p>
+                    <p>Ville : {address.city}</p>
+                    <p>Code postal : {address.postalCode}</p>
+                    <p>Pays : {address.country}</p>
+                    <Link
+                      href={`/addresses/${address._id}`}
+                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
+                    >
+                      Afficher les détails
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                ),
+              )
+            : ""}
+          {filter === "Bar"
+            ? addresses.map((address, index) =>
+                address.locationType === "Bar" ? (
+                  <div key={index} className="m-2 p-2 border-2 w-">
+                    <h1 className="text-2xl font-semibold">
+                      {address.locationType} : {address.name}
+                    </h1>
+                    <p>Adresse : {address.locationAddress}</p>
+                    <p>Ville : {address.city}</p>
+                    <p>Code postal : {address.postalCode}</p>
+                    <p>Pays : {address.country}</p>
+                    <Link
+                      href={`/addresses/${address._id}`}
+                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
+                    >
+                      Afficher les détails
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                ),
+              )
+            : ""}
+          {filter === "Parc"
+            ? addresses.map((address, index) =>
+                address.locationType === "Parc" ? (
+                  <div key={index} className="m-2 p-2 border-2 w-">
+                    <h1 className="text-2xl font-semibold">
+                      {address.locationType} : {address.name}
+                    </h1>
+                    <p>Adresse : {address.locationAddress}</p>
+                    <p>Ville : {address.city}</p>
+                    <p>Code postal : {address.postalCode}</p>
+                    <p>Pays : {address.country}</p>
+                    <Link
+                      href={`/addresses/${address._id}`}
+                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
+                    >
+                      Afficher les détails
+                    </Link>
+                  </div>
+                ) : (
+                  ""
+                ),
+              )
+            : ""}
         </div>
       </div>
-      <div>
-        {addresses.map((address, index) => (
-          <div key={index} className="m-2 p-2 border-2 w-">
-            <h1 className="text-2xl font-semibold">
-              {address.locationType} : {address.name}
-            </h1>
-            <p>Adresse : {address.locationAddress}</p>
-            <p>Ville : {address.city}</p>
-            <p>Code postal : {address.postalCode}</p>
-            <p>Pays : {address.country}</p>
-            <Link
-              href={`/addresses/${address._id}`}
-              className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-            >
-              Afficher les détails
-            </Link>
-          </div>
-        ))}
-      </div>
-    </div>
-    <Footer />
-  </>
-)
+      <Footer />
+    </>
+  )
+}
 
 export default HomePage

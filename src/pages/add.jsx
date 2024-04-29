@@ -54,18 +54,7 @@ const AddressesPage = (props) => {
       postalCode,
       country,
       kitchenType,
-      starsNumber,
-      averagePriceRestaurant,
-      artisticMovement,
-      artType,
-      freeOrPaidMuseum,
-      priceMuseum,
-      barType,
-      averagePriceBar,
-      parkType,
-      publicOrPrivate,
-      freeOrPaidPark,
-      pricePark,
+      ...specificDetails
     },
     { resetForm },
   ) => {
@@ -77,18 +66,7 @@ const AddressesPage = (props) => {
       postalCode,
       country,
       kitchenType,
-      starsNumber,
-      averagePriceRestaurant,
-      artisticMovement,
-      artType,
-      freeOrPaidMuseum,
-      priceMuseum,
-      barType,
-      averagePriceBar,
-      parkType,
-      publicOrPrivate,
-      freeOrPaidPark,
-      pricePark,
+      ...specificDetails,
     })
     setAddresses([newAddress, ...addresses])
     resetForm()
@@ -104,12 +82,7 @@ const AddressesPage = (props) => {
           onSubmit={submit}
         >
           <Form>
-            <SelectField
-              name="locationType"
-              value={locationSelect}
-              current={locationSelect}
-              setCurrent={setLocationSelect}
-            />
+            <FormField name="locationType" placeholder="Type de lieu" />
             <ErrorMessage
               name="locationType"
               className="text-sm text-red-600"
