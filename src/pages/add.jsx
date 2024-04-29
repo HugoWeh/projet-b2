@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
-import { Formik } from "formik"
+import { Formik, ErrorMessage } from "formik"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
 import { useState } from "react"
@@ -45,9 +45,6 @@ const AddressesPage = (props) => {
   const { addresses: initialAddresses } = props
   const [addresses, setAddresses] = useState(initialAddresses)
   const [locationSelect, setLocationSelect] = useState("Restaurant")
-  const handleSelect = (e) => {
-    setLocationSelect(e.target.value)
-  }
   const submit = async (
     {
       locationType,
@@ -110,9 +107,15 @@ const AddressesPage = (props) => {
             <SelectField
               name="locationType"
               value={locationSelect}
-              onChange={handleSelect}
+              current={locationSelect}
+              setCurrent={setLocationSelect}
+            />
+            <ErrorMessage
+              name="locationType"
+              className="text-sm text-red-600"
             />
             <FormField name="name" placeholder="Nom du lieu" />
+            <ErrorMessage name="name" className="text-sm text-red-600" />
             <FormField name="locationAddress" placeholder="Adresse du lieu" />
             <FormField name="city" placeholder="Ville" />
             <FormField name="postalCode" placeholder="Code postal" />
