@@ -20,7 +20,7 @@ export const getServerSideProps = async () => {
   }
 }
 const initialValues = {
-  locationType: "",
+  locationType: "Restaurant",
   name: "",
   locationAddress: "",
   city: "",
@@ -81,72 +81,81 @@ const AddressesPage = (props) => {
           initialValues={initialValues}
           onSubmit={submit}
         >
-          <Form>
-            <FormField name="locationType" placeholder="Type de lieu" />
-            <ErrorMessage
-              name="locationType"
-              className="text-sm text-red-600"
-            />
-            <FormField name="name" placeholder="Nom du lieu" />
-            <ErrorMessage name="name" className="text-sm text-red-600" />
-            <FormField name="locationAddress" placeholder="Adresse du lieu" />
-            <FormField name="city" placeholder="Ville" />
-            <FormField name="postalCode" placeholder="Code postal" />
-            <FormField name="country" placeholder="Pays" />
-            {locationSelect === "Restaurant" ? (
-              <>
-                <FormField name="kitchenType" placeholder="Type de cuisine" />
-                <FormField name="starsNumber" placeholder="Nombre d'étoiles" />
-                <FormField
-                  name="averagePriceRestaurant"
-                  placeholder="Prix moyen"
-                />
-              </>
-            ) : (
-              ""
-            )}
-            {locationSelect === "Musée" ? (
-              <>
-                <FormField
-                  name="artisticMovement"
-                  placeholder="Courant artistique"
-                />
-                <FormField name="artType" placeholder="Type d'art" />
-                <FormField
-                  name="freeOrPaidMuseum"
-                  placeholder="Gratuit ou payant"
-                />
-                <FormField name="priceMuseum" placeholder="Prix" />
-              </>
-            ) : (
-              ""
-            )}
-            {locationSelect === "Bar" ? (
-              <>
-                <FormField name="barType" placeholder="Type de bar" />
-                <FormField name="averagePriceBar" placeholder="Prix moyen" />
-              </>
-            ) : (
-              ""
-            )}
-            {locationSelect === "Parc" ? (
-              <>
-                <FormField name="parkType" placeholder="Type de parc" />
-                <FormField
-                  name="publicOrPrivate"
-                  placeholder="Public ou privé"
-                />
-                <FormField
-                  name="freeOrPaidPark"
-                  placeholder="Gratuit ou payant"
-                />
-                <FormField name="pricePark" placeholder="Prix" />
-              </>
-            ) : (
-              ""
-            )}
-            <Button type="submit">Ajouter le lieu</Button>
-          </Form>
+          {({ handleChange }) => (
+            <Form>
+              <SelectField
+                name="locaitonType"
+                setCurrent={setLocationSelect}
+                onChange={handleChange}
+              />
+              <ErrorMessage
+                name="locationType"
+                className="text-sm text-red-600"
+              />
+              <FormField name="name" placeholder="Nom du lieu" />
+              <ErrorMessage name="name" className="text-sm text-red-600" />
+              <FormField name="locationAddress" placeholder="Adresse du lieu" />
+              <FormField name="city" placeholder="Ville" />
+              <FormField name="postalCode" placeholder="Code postal" />
+              <FormField name="country" placeholder="Pays" />
+              {locationSelect === "Restaurant" ? (
+                <>
+                  <FormField name="kitchenType" placeholder="Type de cuisine" />
+                  <FormField
+                    name="starsNumber"
+                    placeholder="Nombre d'étoiles"
+                  />
+                  <FormField
+                    name="averagePriceRestaurant"
+                    placeholder="Prix moyen"
+                  />
+                </>
+              ) : (
+                ""
+              )}
+              {locationSelect === "Musée" ? (
+                <>
+                  <FormField
+                    name="artisticMovement"
+                    placeholder="Courant artistique"
+                  />
+                  <FormField name="artType" placeholder="Type d'art" />
+                  <FormField
+                    name="freeOrPaidMuseum"
+                    placeholder="Gratuit ou payant"
+                  />
+                  <FormField name="priceMuseum" placeholder="Prix" />
+                </>
+              ) : (
+                ""
+              )}
+              {locationSelect === "Bar" ? (
+                <>
+                  <FormField name="barType" placeholder="Type de bar" />
+                  <FormField name="averagePriceBar" placeholder="Prix moyen" />
+                </>
+              ) : (
+                ""
+              )}
+              {locationSelect === "Parc" ? (
+                <>
+                  <FormField name="parkType" placeholder="Type de parc" />
+                  <FormField
+                    name="publicOrPrivate"
+                    placeholder="Public ou privé"
+                  />
+                  <FormField
+                    name="freeOrPaidPark"
+                    placeholder="Gratuit ou payant"
+                  />
+                  <FormField name="pricePark" placeholder="Prix" />
+                </>
+              ) : (
+                ""
+              )}
+              <Button type="submit">Ajouter le lieu</Button>
+            </Form>
+          )}
         </Formik>
       </div>
       <Footer />
