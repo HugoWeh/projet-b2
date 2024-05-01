@@ -3,7 +3,6 @@ import { Schema } from "mongoose"
 export const addressSchema = new Schema({
   locationType: {
     type: String,
-    default: "Restaurant",
     required: true,
   },
   name: {

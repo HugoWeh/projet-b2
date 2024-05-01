@@ -44,10 +44,11 @@ const initialValues = {
 const AddressesPage = (props) => {
   const { addresses: initialAddresses } = props
   const [addresses, setAddresses] = useState(initialAddresses)
-  const [locationSelect, setLocationSelect] = useState("Restaurant")
+  const [locationSelect, setLocationSelect] = useState(
+    initialValues.locationType,
+  )
   const submit = async (
     {
-      locationType,
       name,
       locationAddress,
       city,
@@ -59,7 +60,7 @@ const AddressesPage = (props) => {
     { resetForm },
   ) => {
     const { data: newAddress } = await axios.post("/api/addresses", {
-      locationType,
+      locationType: locationSelect,
       name,
       locationAddress,
       city,
