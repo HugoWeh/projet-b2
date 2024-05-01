@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable max-lines */
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"
@@ -74,9 +75,9 @@ const AddressesPage = (props) => {
   }
 
   return (
-    <div className="flex flex-col bg-purple-600">
+    <div className="flex flex-col">
       <Header />
-      <div className="bg-yellow-600 w-1/2 p-2">
+      <div className="w-1/2 p-2">
         <Formik
           validationSchema={validationSchema}
           initialValues={initialValues}
@@ -85,7 +86,7 @@ const AddressesPage = (props) => {
           {({ handleChange }) => (
             <Form>
               <SelectField
-                name="locaitonType"
+                name="locationType"
                 setCurrent={setLocationSelect}
                 onChange={handleChange}
               />
@@ -102,6 +103,10 @@ const AddressesPage = (props) => {
               {locationSelect === "Restaurant" ? (
                 <>
                   <FormField name="kitchenType" placeholder="Type de cuisine" />
+                  <ErrorMessage
+                    name="kitchenType"
+                    className="text-sm text-red-600"
+                  />
                   <FormField
                     name="starsNumber"
                     placeholder="Nombre d'étoiles"

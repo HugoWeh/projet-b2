@@ -1,8 +1,6 @@
 /* eslint-disable max-lines */
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
-import { Nav } from "@/components/Nav"
-import { Stars } from "@/components/Stars"
 import axios from "axios"
 import Link from "next/link"
 import { useState } from "react"
@@ -16,7 +14,7 @@ export const getServerSideProps = async () => {
 }
 // eslint-disable-next-line max-lines-per-function
 const HomePage = ({ addresses }) => {
-  const [filter, setFilter] = useState("")
+  const [filter, setFilter] = useState("Tous")
   const handleChange = (e) => {
     setFilter(e.target.value)
   }
@@ -25,61 +23,76 @@ const HomePage = ({ addresses }) => {
     <>
       <Header />
       <div className="flex flex-row">
-        <div className="border-r border-black w-1/6">
-          <ul className="bg-gray-200">
-            <Nav />
-            <select name="filter" onChange={handleChange}>
-              <option value="" />
-              <option value="Restaurant">Restaurant</option>
-              <option value="Musée">Musée</option>
-              <option value="Bar">Bar</option>
-              <option value="Parc">Parc</option>
-            </select>
-          </ul>
-          <div className="justify-around border-t-2 border-black p-2">
-            <h1 className="text-2xl text-center">Avis</h1>
-            <ul className="flex flex-row justify-around">
-              <Stars />
-            </ul>
-          </div>
+        <div className="flex flex-col border-r border-black w-1/6">
+          <select
+            name="filter"
+            onChange={handleChange}
+            className="m-2 items-center p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+          >
+            <option value="Tous">Tous</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Musée">Musée</option>
+            <option value="Bar">Bar</option>
+            <option value="Parc">Parc</option>
+          </select>
         </div>
-        <div>
-          {filter === ""
+        <div className="w-full mb-16">
+          {filter === "Tous"
             ? addresses.map((address, index) => (
-                <div key={index} className="m-2 p-2 border-2 w-">
-                  <h1 className="text-2xl font-semibold">
-                    {address.locationType} : {address.name}
+                <div
+                  key={index}
+                  className="m-2 p-4 border border-gray-300 rounded-lg shadow-md bg-white hover:bg-blue-50"
+                >
+                  <h1 className="text-xl font-semibold mb-2">
+                    {address.locationType}: {address.name}
                   </h1>
-                  <p>Adresse : {address.locationAddress}</p>
-                  <p>Ville : {address.city}</p>
-                  <p>Code postal : {address.postalCode}</p>
-                  <p>Pays : {address.country}</p>
-                  <Link
-                    href={`/addresses/${address._id}`}
-                    className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-                  >
-                    Afficher les détails
-                  </Link>
+                  <p className="text-gray-700 mb-1">
+                    Adresse : {address.locationAddress}
+                  </p>
+                  <p className="text-gray-700 mb-1">Ville : {address.city}</p>
+                  <p className="text-gray-700 mb-1">
+                    Code postal : {address.postalCode}
+                  </p>
+                  <p className="text-gray-700 mb-4">Pays : {address.country}</p>
+                  <div className="flex justify-center">
+                    <Link
+                      href={`/addresses/${address._id}`}
+                      className="py-2 px-6 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 hover:text-white"
+                    >
+                      Afficher les détails
+                    </Link>
+                  </div>
                 </div>
               ))
             : ""}
           {filter === "Restaurant"
             ? addresses.map((address, index) =>
                 address.locationType === "Restaurant" ? (
-                  <div key={index} className="m-2 p-2 border-2 w-">
-                    <h1 className="text-2xl font-semibold">
-                      {address.locationType} : {address.name}
+                  <div
+                    key={index}
+                    className="m-2 p-4 border border-gray-300 rounded-lg shadow-md bg-white"
+                  >
+                    <h1 className="text-xl font-semibold">
+                      {address.locationType}: {address.name}
                     </h1>
-                    <p>Adresse : {address.locationAddress}</p>
-                    <p>Ville : {address.city}</p>
-                    <p>Code postal : {address.postalCode}</p>
-                    <p>Pays : {address.country}</p>
-                    <Link
-                      href={`/addresses/${address._id}`}
-                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-                    >
-                      Afficher les détails
-                    </Link>
+                    <p className="text-gray-700 mb-2">
+                      Adresse : {address.locationAddress}
+                    </p>
+                    <p className="text-gray-700 mb-2">Ville : {address.city}</p>
+                    <p className="text-gray-700 mb-2">
+                      Code postal : {address.postalCode}
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                      Pays : {address.country}
+                    </p>
+                    <div className="flex justify-center">
+                      <Link
+                        href={`/addresses/${address._id}`}
+                        className="py-2 px-4 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700"
+                      >
+                        Afficher les détails
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   ""
@@ -89,20 +102,31 @@ const HomePage = ({ addresses }) => {
           {filter === "Musée"
             ? addresses.map((address, index) =>
                 address.locationType === "Musée" ? (
-                  <div key={index} className="m-2 p-2 border-2 w-">
-                    <h1 className="text-2xl font-semibold">
-                      {address.locationType} : {address.name}
+                  <div
+                    key={index}
+                    className="m-2 p-4 border border-gray-300 rounded-lg shadow-md bg-white"
+                  >
+                    <h1 className="text-xl font-semibold">
+                      {address.locationType}: {address.name}
                     </h1>
-                    <p>Adresse : {address.locationAddress}</p>
-                    <p>Ville : {address.city}</p>
-                    <p>Code postal : {address.postalCode}</p>
-                    <p>Pays : {address.country}</p>
-                    <Link
-                      href={`/addresses/${address._id}`}
-                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-                    >
-                      Afficher les détails
-                    </Link>
+                    <p className="text-gray-700 mb-2">
+                      Adresse : {address.locationAddress}
+                    </p>
+                    <p className="text-gray-700 mb-2">Ville : {address.city}</p>
+                    <p className="text-gray-700 mb-2">
+                      Code postal : {address.postalCode}
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                      Pays : {address.country}
+                    </p>
+                    <div className="flex justify-center">
+                      <Link
+                        href={`/addresses/${address._id}`}
+                        className="py-2 px-4 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700"
+                      >
+                        Afficher les détails
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   ""
@@ -112,20 +136,31 @@ const HomePage = ({ addresses }) => {
           {filter === "Bar"
             ? addresses.map((address, index) =>
                 address.locationType === "Bar" ? (
-                  <div key={index} className="m-2 p-2 border-2 w-">
-                    <h1 className="text-2xl font-semibold">
-                      {address.locationType} : {address.name}
+                  <div
+                    key={index}
+                    className="m-2 p-4 border border-gray-300 rounded-lg shadow-md bg-white"
+                  >
+                    <h1 className="text-xl font-semibold">
+                      {address.locationType}: {address.name}
                     </h1>
-                    <p>Adresse : {address.locationAddress}</p>
-                    <p>Ville : {address.city}</p>
-                    <p>Code postal : {address.postalCode}</p>
-                    <p>Pays : {address.country}</p>
-                    <Link
-                      href={`/addresses/${address._id}`}
-                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-                    >
-                      Afficher les détails
-                    </Link>
+                    <p className="text-gray-700 mb-2">
+                      Adresse : {address.locationAddress}
+                    </p>
+                    <p className="text-gray-700 mb-2">Ville : {address.city}</p>
+                    <p className="text-gray-700 mb-2">
+                      Code postal : {address.postalCode}
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                      Pays : {address.country}
+                    </p>
+                    <div className="flex justify-center">
+                      <Link
+                        href={`/addresses/${address._id}`}
+                        className="py-2 px-4 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700"
+                      >
+                        Afficher les détails
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   ""
@@ -135,20 +170,31 @@ const HomePage = ({ addresses }) => {
           {filter === "Parc"
             ? addresses.map((address, index) =>
                 address.locationType === "Parc" ? (
-                  <div key={index} className="m-2 p-2 border-2 w-">
-                    <h1 className="text-2xl font-semibold">
-                      {address.locationType} : {address.name}
+                  <div
+                    key={index}
+                    className="m-2 p-4 border border-gray-300 rounded-lg shadow-md bg-white"
+                  >
+                    <h1 className="text-xl font-semibold">
+                      {address.locationType}: {address.name}
                     </h1>
-                    <p>Adresse : {address.locationAddress}</p>
-                    <p>Ville : {address.city}</p>
-                    <p>Code postal : {address.postalCode}</p>
-                    <p>Pays : {address.country}</p>
-                    <Link
-                      href={`/addresses/${address._id}`}
-                      className="flex p-2 bg-indigo-600 text-white justify-center font-semibold rounded"
-                    >
-                      Afficher les détails
-                    </Link>
+                    <p className="text-gray-700 mb-2">
+                      Adresse : {address.locationAddress}
+                    </p>
+                    <p className="text-gray-700 mb-2">Ville : {address.city}</p>
+                    <p className="text-gray-700 mb-2">
+                      Code postal : {address.postalCode}
+                    </p>
+                    <p className="text-gray-700 mb-4">
+                      Pays : {address.country}
+                    </p>
+                    <div className="flex justify-center">
+                      <Link
+                        href={`/addresses/${address._id}`}
+                        className="py-2 px-4 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700"
+                      >
+                        Afficher les détails
+                      </Link>
+                    </div>
                   </div>
                 ) : (
                   ""

@@ -22,19 +22,7 @@ const handler = createRoute(async (req, res) => {
       city,
       postalCode,
       country,
-      kitchenType,
-      starsNumber,
-      averagePriceRestaurant,
-      artisticMovement,
-      artType,
-      freeOrPaidMuseum,
-      priceMuseum,
-      barType,
-      averagePriceBar,
-      parkType,
-      publicOrPrivate,
-      freeOrPaidPark,
-      pricePark,
+      ...specificDetails
     } = req.body
     const newAddress = new AddressModel({
       locationType,
@@ -43,19 +31,7 @@ const handler = createRoute(async (req, res) => {
       city,
       postalCode,
       country,
-      kitchenType,
-      starsNumber,
-      averagePriceRestaurant,
-      artisticMovement,
-      artType,
-      freeOrPaidMuseum,
-      priceMuseum,
-      barType,
-      averagePriceBar,
-      parkType,
-      publicOrPrivate,
-      freeOrPaidPark,
-      pricePark,
+      ...specificDetails,
     })
 
     await newAddress.save()

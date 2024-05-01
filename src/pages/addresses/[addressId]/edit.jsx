@@ -1,7 +1,8 @@
+/* eslint-disable max-lines-per-function */
 import axios from "axios"
 import { Formik } from "formik"
 import { useRouter } from "next/router"
-import * as yup from "yup"
+import { validationSchema } from "@/database/schemas/validationSchema"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
 import { Button } from "@/components/Button"
@@ -17,14 +18,6 @@ export const getServerSideProps = async ({ params: { addressId } }) => {
     props: { address },
   }
 }
-const validationSchema = yup.object({
-  locationType: yup.string().required(),
-  name: yup.string().min(1).required(),
-  locationAddress: yup.string().min(3).required(),
-  city: yup.string().min(1).required(),
-  postalCode: yup.number().integer().required(),
-  country: yup.string().min(4).required(),
-})
 const AddressEditPage = ({ address }) => {
   const router = useRouter()
   const initialValues = address
@@ -65,6 +58,58 @@ const AddressEditPage = ({ address }) => {
             <FormField name="city" placeholder="Ville" />
             <FormField name="postalCode" placeholder="Code postal" />
             <FormField name="country" placeholder="Pays" />
+            {address.locationType === "Restaurant" ? (
+              <>
+                <FormField name="kitchenType" placeholder="Type de cuisine" />
+                <FormField name="starsNumber" placeholder="Nombre d'étoiles" />
+                <FormField
+                  name="averagePriceRestaurant"
+                  placeholder="Prix moyen"
+                />
+              </>
+            ) : (
+              ""
+            )}
+            {address.locationType === "Musée" ? (
+              <>
+                <FormField
+                  name="artisticMovement"
+                  placeholder="Courant artistique"
+                />
+                <FormField name="artType" placeholder="Type d'art" />
+                <FormField
+                  name="freeOrPaidMuseum"
+                  placeholder="Gratuit ou payant"
+                />
+                <FormField name="priceMuseum" placeholder="Prix" />
+              </>
+            ) : (
+              ""
+            )}
+            {address.locationType === "Bar" ? (
+              <>
+                <FormField name="barType" placeholder="Type de bar" />
+                <FormField name="averagePriceBar" placeholder="Prix moyen" />
+              </>
+            ) : (
+              ""
+            )}
+            {address.locationType === "Parc" ? (
+              <>
+                <FormField name="parkType" placeholder="Type de parc" />
+                <FormField
+                  name="publicOrPrivate"
+                  placeholder="Public ou privé"
+                />
+                <FormField
+                  name="freeOrPaidPark"
+                  placeholder="Gratuit ou payant"
+                />
+                <FormField name="pricePark" placeholder="Prix" />
+              </>
+            ) : (
+              ""
+            )}
             <Button type="submit">Sauvegarder les modifications</Button>
           </Form>
         </Formik>
