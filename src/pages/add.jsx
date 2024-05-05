@@ -108,10 +108,7 @@ const AddressesPage = (props) => {
                 <label htmlFor="name" className={labelStyle}>
                   Nom du lieu
                 </label>
-                <FormField
-                  name="name"
-                  className={fieldStyle}
-                />
+                <FormField name="name" className={fieldStyle} />
                 <ErrorMessage
                   name="name"
                   className="mt-1 text-sm text-red-600"
@@ -122,10 +119,7 @@ const AddressesPage = (props) => {
                 <label htmlFor="locationAddress" className={labelStyle}>
                   Adresse du lieu
                 </label>
-                <FormField
-                  name="locationAddress"
-                  className={fieldStyle}
-                />
+                <FormField name="locationAddress" className={fieldStyle} />
                 <ErrorMessage name="locationAddress" />
               </div>
 
@@ -133,10 +127,7 @@ const AddressesPage = (props) => {
                 <label htmlFor="city" className={labelStyle}>
                   Ville
                 </label>
-                <FormField
-                  name="city"
-                  className={fieldStyle}
-                />
+                <FormField name="city" className={fieldStyle} />
                 <ErrorMessage name="city" />
               </div>
 
@@ -144,10 +135,7 @@ const AddressesPage = (props) => {
                 <label htmlFor="postalCode" className={labelStyle}>
                   Code postal
                 </label>
-                <FormField
-                  name="postalCode"
-                  className={fieldStyle}
-                />
+                <FormField name="postalCode" className={fieldStyle} />
                 <ErrorMessage name="postalCode" />
               </div>
 
@@ -155,10 +143,7 @@ const AddressesPage = (props) => {
                 <label htmlFor="country" className={labelStyle}>
                   Pays
                 </label>
-                <FormField
-                  name="country"
-                  className={fieldStyle}
-                />
+                <FormField name="country" className={fieldStyle} />
                 <ErrorMessage name="country" />
               </div>
 
@@ -168,10 +153,7 @@ const AddressesPage = (props) => {
                     <label htmlFor="kitchenType" className={labelStyle}>
                       Type de cuisine
                     </label>
-                    <FormField
-                      name="kitchenType"
-                      className={fieldStyle}
-                    />
+                    <FormField name="kitchenType" className={fieldStyle} />
                     <ErrorMessage
                       name="kitchenType"
                       className="mt-1 text-sm text-red-600"
@@ -181,10 +163,8 @@ const AddressesPage = (props) => {
                     <label htmlFor="starsNumber" className={labelStyle}>
                       Nombre d'étoiles
                     </label>
-                    <FormField
-                      name="starsNumber"
-                      className={fieldStyle}
-                    />
+                    <FormField name="starsNumber" className={fieldStyle} />
+                    <ErrorMessage name="starsNumber" />
                   </div>
                   <div className="mb-4">
                     <label
@@ -197,6 +177,7 @@ const AddressesPage = (props) => {
                       name="averagePriceRestaurant"
                       className={fieldStyle}
                     />
+                    <ErrorMessage name="averagePriceRestaurant" />
                   </div>
                 </>
               )}
@@ -207,37 +188,29 @@ const AddressesPage = (props) => {
                     <label htmlFor="artisticMovement" className={labelStyle}>
                       Courant artistique
                     </label>
-                    <FormField
-                      name="artisticMovement"
-                      className={fieldStyle}
-                    />
+                    <FormField name="artisticMovement" className={fieldStyle} />
+                    <ErrorMessage name="artisticMovement" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="artType" className={labelStyle}>
                       Type d'art
                     </label>
-                    <FormField
-                      name="artType"
-                      className={fieldStyle}
-                    />
+                    <FormField name="artType" className={fieldStyle} />
+                    <ErrorMessage name="artType" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="freeOrPaidMuseum" className={labelStyle}>
                       Gratuit ou payant
                     </label>
-                    <FormField
-                      name="freeOrPaidMuseum"
-                      className={fieldStyle}
-                    />
+                    <FormField name="freeOrPaidMuseum" className={fieldStyle} />
+                    <ErrorMessage name="freeOrPaidMuseum" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="priceMuseum" className={labelStyle}>
                       Prix
                     </label>
-                    <FormField
-                      name="priceMuseum"
-                      className={fieldStyle}
-                    />
+                    <FormField name="priceMuseum" className={fieldStyle} />
+                    <ErrorMessage name="priceMuseum" />
                   </div>
                 </>
               )}
@@ -248,19 +221,15 @@ const AddressesPage = (props) => {
                     <label htmlFor="barType" className={labelStyle}>
                       Type de bar
                     </label>
-                    <FormField
-                      name="barType"
-                      className={fieldStyle}
-                    />
+                    <FormField name="barType" className={fieldStyle} />
+                    <ErrorMessage name="barType" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="averagePriceBar" className={labelStyle}>
                       Prix moyen
                     </label>
-                    <FormField
-                      name="averagePriceBar"
-                      className={fieldStyle}
-                    />
+                    <FormField name="averagePriceBar" className={fieldStyle} />
+                    <ErrorMessage name="averagePriceBar" />
                   </div>
                 </>
               )}
@@ -271,37 +240,29 @@ const AddressesPage = (props) => {
                     <label htmlFor="parkType" className={labelStyle}>
                       Type de parc
                     </label>
-                    <FormField
-                      name="parkType"
-                      className={fieldStyle}
-                    />
+                    <FormField name="parkType" className={fieldStyle} />
+                    <ErrorMessage name="parkType" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="publicOrPrivate" className={labelStyle}>
                       Public ou privé
                     </label>
-                    <FormField
-                      name="publicOrPrivate"
-                      className={fieldStyle}
-                    />
+                    <FormField name="publicOrPrivate" className={fieldStyle} />
+                    <ErrorMessage name="publicOrPrivate" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="freeOrPaidPark" className={labelStyle}>
                       Gratuit ou payant
                     </label>
-                    <FormField
-                      name="freeOrPaidPark"
-                      className={fieldStyle}
-                    />
+                    <FormField name="freeOrPaidPark" className={fieldStyle} />
+                    <ErrorMessage name="freeOrPaidPark" />
                   </div>
                   <div className="mb-4">
                     <label htmlFor="pricePark" className={labelStyle}>
                       Prix
                     </label>
-                    <FormField
-                      name="pricePark"
-                      className={fieldStyle}
-                    />
+                    <FormField name="pricePark" className={fieldStyle} />
+                    <ErrorMessage name="pricePark" />
                   </div>
                 </>
               )}
