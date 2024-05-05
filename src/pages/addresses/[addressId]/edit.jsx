@@ -1,6 +1,7 @@
+/* eslint-disable max-lines */
 /* eslint-disable max-lines-per-function */
 import axios from "axios"
-import { Formik, ErrorMessage } from "formik"
+import { Formik } from "formik"
 import { useRouter } from "next/router"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
@@ -17,6 +18,9 @@ export const getServerSideProps = async ({ params: { addressId } }) => {
     props: { address },
   }
 }
+const fieldStyle =
+  "mt-1 block w-full border-gray-600 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mb-4"
+const labelStyle = "block text-sm font-medium text-gray-700"
 const AddressEditPage = ({ address }) => {
   const router = useRouter()
   const initialValues = address
@@ -46,30 +50,67 @@ const AddressEditPage = ({ address }) => {
   return (
     <div>
       <Header />
-      <div className="p-2">
+      <div className="flex items-center justify-center w-1/2 m-8 border-2 rounded p-2 mx-auto">
         <Formik
           initialValues={initialValues}
           noValidate
           onSubmit={handleSubmit}
         >
-          <Form>
-            <FormField name="name" placeholder="Nom du lieu" />
-            <ErrorMessage name="name" />
-            <FormField name="locationAddress" placeholder="Adresse du lieu" />
-            <ErrorMessage name="locationAddress" />
-            <FormField name="city" placeholder="Ville" />
-            <ErrorMessage name="city" />
-            <FormField name="postalCode" placeholder="Code postal" />
-            <ErrorMessage name="postalCode" />
-            <FormField name="country" placeholder="Pays" />
-            <ErrorMessage name="country" />
+          <Form className="flex flex-col w-full">
+            <label htmlFor="locationType" className={labelStyle}>
+              Nom du lieu
+            </label>
+            <FormField
+              name="name"
+              className={fieldStyle}
+            />
+            <label htmlFor="locationType" className={labelStyle}>
+              Adresse du lieu
+            </label>
+            <FormField
+              name="locationAddress"
+              className={fieldStyle}
+            />
+            <label htmlFor="locationType" className={labelStyle}>
+              Ville
+            </label>
+            <FormField name="city" className={fieldStyle} />
+            <label htmlFor="locationType" className={labelStyle}>
+              Code postal
+            </label>
+            <FormField
+              name="postalCode"
+              className={fieldStyle}
+            />
+            <label htmlFor="locationType" className={labelStyle}>
+              Pays
+            </label>
+            <FormField
+              name="country"
+              className={fieldStyle}
+            />
             {address.locationType === "Restaurant" ? (
               <>
-                <FormField name="kitchenType" placeholder="Type de cuisine" />
-                <FormField name="starsNumber" placeholder="Nombre d'étoiles" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Type de cuisine
+                </label>
+                <FormField
+                  name="kitchenType"
+                  className={fieldStyle}
+                />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Nombre d'étoiles
+                </label>
+                <FormField
+                  name="starsNumber"
+                  className={fieldStyle}
+                />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Prix moyen
+                </label>
                 <FormField
                   name="averagePriceRestaurant"
-                  placeholder="Prix moyen"
+                  className={fieldStyle}
                 />
               </>
             ) : (
@@ -77,40 +118,88 @@ const AddressEditPage = ({ address }) => {
             )}
             {address.locationType === "Musée" ? (
               <>
+                <label htmlFor="locationType" className={labelStyle}>
+                  Courant artistique
+                </label>
                 <FormField
                   name="artisticMovement"
-                  placeholder="Courant artistique"
+                  className={fieldStyle}
                 />
-                <FormField name="artType" placeholder="Type d'art" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Type d'art
+                </label>
+                <FormField
+                  name="artType"
+                  className={fieldStyle}
+                />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Gratuit ou payant
+                </label>
                 <FormField
                   name="freeOrPaidMuseum"
-                  placeholder="Gratuit ou payant"
+                  className={fieldStyle}
                 />
-                <FormField name="priceMuseum" placeholder="Prix" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Prix
+                </label>
+                <FormField
+                  name="priceMuseum"
+                  className={fieldStyle}
+                />
               </>
             ) : (
               ""
             )}
             {address.locationType === "Bar" ? (
               <>
-                <FormField name="barType" placeholder="Type de bar" />
-                <FormField name="averagePriceBar" placeholder="Prix moyen" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Type de bar
+                </label>
+                <FormField
+                  name="barType"
+                  className={fieldStyle}
+                />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Prix moyen
+                </label>
+                <FormField
+                  name="averagePriceBar"
+                  className={fieldStyle}
+                />
               </>
             ) : (
               ""
             )}
             {address.locationType === "Parc" ? (
               <>
-                <FormField name="parkType" placeholder="Type de parc" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Type de parc
+                </label>
+                <FormField
+                  name="parkType"
+                  className={fieldStyle}
+                />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Public ou privé
+                </label>
                 <FormField
                   name="publicOrPrivate"
-                  placeholder="Public ou privé"
+                  className={fieldStyle}
                 />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Gratuit ou payant
+                </label>
                 <FormField
                   name="freeOrPaidPark"
-                  placeholder="Gratuit ou payant"
+                  className={fieldStyle}
                 />
-                <FormField name="pricePark" placeholder="Prix" />
+                <label htmlFor="locationType" className={labelStyle}>
+                  Prix
+                </label>
+                <FormField
+                  name="pricePark"
+                  className={fieldStyle}
+                />
               </>
             ) : (
               ""
