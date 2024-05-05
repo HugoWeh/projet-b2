@@ -1,8 +1,7 @@
 /* eslint-disable max-lines-per-function */
 import axios from "axios"
-import { Formik } from "formik"
+import { Formik, ErrorMessage } from "formik"
 import { useRouter } from "next/router"
-import { validationSchema } from "@/database/schemas/validationSchema"
 import { Form } from "@/components/Form"
 import { FormField } from "@/components/FormField"
 import { Button } from "@/components/Button"
@@ -29,6 +28,7 @@ const AddressEditPage = ({ address }) => {
     city,
     postalCode,
     country,
+    ...specificDetails
   }) => {
     await axios.patch(`/api/addresses/${_id}`, {
       locationType,
@@ -37,6 +37,7 @@ const AddressEditPage = ({ address }) => {
       city,
       postalCode,
       country,
+      ...specificDetails,
     })
 
     router.push(`/addresses/${_id}`)
@@ -48,16 +49,20 @@ const AddressEditPage = ({ address }) => {
       <div className="p-2">
         <Formik
           initialValues={initialValues}
-          validationSchema={validationSchema}
+          noValidate
           onSubmit={handleSubmit}
         >
           <Form>
-            <FormField name="locationType" placeholder="Type de lieu" />
             <FormField name="name" placeholder="Nom du lieu" />
+            <ErrorMessage name="name" />
             <FormField name="locationAddress" placeholder="Adresse du lieu" />
+            <ErrorMessage name="locationAddress" />
             <FormField name="city" placeholder="Ville" />
+            <ErrorMessage name="city" />
             <FormField name="postalCode" placeholder="Code postal" />
+            <ErrorMessage name="postalCode" />
             <FormField name="country" placeholder="Pays" />
+            <ErrorMessage name="country" />
             {address.locationType === "Restaurant" ? (
               <>
                 <FormField name="kitchenType" placeholder="Type de cuisine" />

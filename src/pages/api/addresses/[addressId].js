@@ -17,8 +17,27 @@ const handler = createRoute(async (req, res) => {
   }
 
   if (req.method === "PATCH") {
-    const { locationType, name, locationAddress, city, postalCode, country } =
-      req.body
+    const {
+      locationType,
+      name,
+      locationAddress,
+      city,
+      postalCode,
+      country,
+      kitchenType,
+      starsNumber,
+      averagePriceRestaurant,
+      artisticMovement,
+      artType,
+      freeOrPaidMuseum,
+      priceMuseum,
+      barType,
+      averagePriceBar,
+      parkType,
+      publicOrPrivate,
+      freeOrPaidPark,
+      pricePark,
+    } = req.body
 
     Object.assign(address, {
       locationType: locationType || address.locationType,
@@ -27,6 +46,20 @@ const handler = createRoute(async (req, res) => {
       city: city || address.city,
       postalCode: postalCode || address.postalCode,
       country: country || address.country,
+      kitchenType: kitchenType || address.kitchenType,
+      starsNumber: starsNumber || address.starsNumber,
+      averagePriceRestaurant:
+        averagePriceRestaurant || address.averagePriceRestaurant,
+      artisticMovement: artisticMovement || address.artisticMovement,
+      artType: artType || address.artType,
+      freeOrPaidMuseum: freeOrPaidMuseum || address.freeOrPaidMuseum,
+      priceMuseum: priceMuseum || address.priceMuseum,
+      barType: barType || address.barType,
+      averagePriceBar: averagePriceBar || address.averagePriceBar,
+      parkType: parkType || address.parkType,
+      publicOrPrivate: publicOrPrivate || address.publicOrPrivate,
+      freeOrPaidPark: freeOrPaidPark || address.freeOrPaidPark,
+      pricePark: pricePark || address.pricePark,
     })
 
     await address.save()

@@ -34,7 +34,7 @@ const AddressPage = ({ address }) => (
         <p className="text-gray-700 mb-2">
           Nombre d'étoiles : {address.starsNumber}
         </p>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-2">
           Prix moyen : {address.averagePriceRestaurant}
         </p>
         <div className="flex justify-between">
@@ -73,10 +73,10 @@ const AddressPage = ({ address }) => (
           Courant artistique : {address.artisticMovement}
         </p>
         <p className="text-gray-700 mb-2">Type d'art : {address.artType}</p>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-2">
           Gratuit ou payant : {address.freeOrPaidMuseum}
         </p>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-2">
           Prix : {address.priceMuseum}
         </p>
         <div className="flex justify-between">
